@@ -1,0 +1,54 @@
+body, h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Verdana', sans-serif;
+}
+
+
+.app-container {
+  background-color: #FAF3E0; /* Soft Beige */
+  height: 100vh;
+}
+
+.title-section {
+
+  position:relative;
+}
+
+.chat-widget {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #F2A365; /* Colorful flare */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.chat-callout {
+  position:absolute;
+  right: 240px; 
+  bottom: 120px; 
+  cursor: pointer;
+}
+
+.chat-callout p {
+  font-size: 2.8em;
+  font-weight: bold;
+  font-style: italic;
+  color: #800080;
+  margin: 0;
+}
+
+.chat-callout .bi-arrow-down-right {
+  display: block;
+  font-size: 100px;
+  color:#800080;
+  margin-top: 150px;
+}
+
+.additional-text {
+  font-size: 1.2em;
+  color: #800080;
+  margin-top: 20px;  /* Adjust spacing as needed */
+}
