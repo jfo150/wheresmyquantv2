@@ -1,1 +1,1 @@
-web: npm run start backend/server.js
+web: concurrently "npm run start --prefix frontend" "npm run start --prefix backend"
