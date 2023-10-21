@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
-import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe('sk_test_4eC39HqLyjWDarjtT1zdp7dcY');
-
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function App() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div className="app-container d-flex justify-content-center align-items">
+    <div className="app-container-lg d-flex flex-column vh-100 justify-content-center align-items-center">
+
       <div className="chat-widget bg-light rounded p-4">
-        <div className="title-section text-center mb-3">
+        <div className="title-section text-center mb-4">
           <h1>Wheres My QUAAANT!!</h1>
           <p className="subtitle"><em>My quantitative. My math specialist. Look at him.</em></p>
         </div>
@@ -25,40 +29,38 @@ function App() {
           <p className="mr-2">Try for free!</p>
           <i className="bi bi-arrow-down-right"></i>
         </div>
-        {/* Chat widget will be loaded here */}
-      
-  
-    <div className="container mt-5">
-    <div className="d-flex justify-content-center align-items-center mt-4">
-      <button className="btn btn-primary" onClick={handlePaymentClick}>Upgrade to Premium</button>
+
+        <div className="container mt-5">
+          <div className="d-flex justify-content-center align-items-center mt-4">
+            <Button className="btn btn-primary" onClick={handleShow}>
+              Upgrade to Premium
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <Modal show={show} onHide={handleClose} centered className="position-relative bottom-0 start-0">
+        <Modal.Header closeButton>
+          <Modal.Title>Pricing Options</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Choose a plan</p>
+          <ul>
+            <li>Standard: $10 per month for 50 prompts per month</li>
+            <li>Premium: $99 per year for up to 250 prompts per month</li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary">
+            Upgrade Now
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
-  </div>
-  </div>
-  </div>
   );
-
-  async function handlePaymentClick() {
-    try {
-      // Step 1: Create a checkout session on the backend
-      const response = await axios.post('http://localhost:3000/create-checkout-session');
-
-      // Extract client secret from the response
-      const { clientSecret } = response.data;
-
-      // Step 2: Use the client secret to initiate the Stripe checkout
-      const stripe = await stripePromise;
-      const { error } = await stripe.redirectToCheckout({ sessionId: clientSecret });
-      
-      // If there's an error during redirection (e.g., popup blocked), handle it
-      if (error) {
-        console.error(error);
-      }
-    } catch (error) {
-      console.error('Error creating checkout session:', error);
-    }
-  }
-
 }
-
 
 export default App;

@@ -9,8 +9,9 @@ router.post('/create-checkout-session', async (req, res) => {
     ui_mode: 'embedded',
     line_items: [
       {
-        price: '99',
+        unit_amount: 1000,
         quantity: 1,
+        currency: usd,
       },
     ],
     mode: 'payment',
