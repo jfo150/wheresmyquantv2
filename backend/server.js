@@ -6,6 +6,16 @@ const sessionMiddleware = require('./middleware/session');
 const passportConfig = require('./config/passport-config');
 require('dotenv').config();
 
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'frontend/build')))
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
+})
+
+
 const app = express();
 // stripe integration
 
