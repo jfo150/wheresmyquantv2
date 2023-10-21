@@ -5,20 +5,9 @@ const cors = require('cors');
 const sessionMiddleware = require('./middleware/session');
 const passportConfig = require('./config/passport-config');
 require('dotenv').config();
-
 const path = require('path');
 
-
-
-
 const app = express();
-// stripe integration
-app.use(express.static(path.join(__dirname, 'frontend/build')))
-
-// Anything that doesn't match the above, send back the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
-})
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, { 
@@ -45,5 +34,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/payments', require('./routes/payments'));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+// serve frontend
+app.use(express.static(path.join(__dirname, '../frontend/build'))); 
+
+// Anything that doesn't match the above, send back the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html')); 
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});
