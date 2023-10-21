@@ -1,0 +1,10 @@
+{
+    "name": "wheresmyquant",
+    "scripts": {
+      "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\""
+    },
+    "dependencies": {
+      "concurrently": "^6.3.0"
+    }
+  }
+  
