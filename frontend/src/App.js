@@ -57,15 +57,13 @@ function App() {
               </div>
             </div>
 
-            <Modal show={show} onHide={handleClose} centered className="position-relative bottom-0 start-0">
+            <Modal show={show} onHide={handleClose} centered>
               <Modal.Header closeButton>
-                <Modal.Title>Pricing Options</Modal.Title>
+                <Modal.Title>Upgrade to Premium</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>Choose a plan</p>
-                <ul>
-                  <li>Standard: $10 per month for 50 prompts per month</li>
-                </ul>
+                <p>$9.99 per month for 100 prompts per month & PDF uploads</p>
+                
                 {/* Stripe Buy Button */}
                 <stripe-buy-button
                   buy-button-id="buy_btn_1O4RhkD9tqxUSh43nHPht0pm"
