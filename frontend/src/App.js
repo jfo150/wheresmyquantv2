@@ -38,9 +38,10 @@ function App() {
                 <p className="subtitle"><em>My quantitative. My math specialist. Look at him.</em></p>
               </div>
               <div className="pricing-section text-center mb-3">
-                <p><strong>5 prompts for free!</strong></p>
-                <p><strong>Then, $10/month</strong> for up to 50 prompts.</p>
-                <p className="additional-text">This is the quant bot, trained specifically to help decipher company financials quickly. Includes all Quartlery Earnings for all S&P500 companies starting Q3 2023.</p>
+              <p className="additional-text">This is the quant bot, trained specifically to help decipher company financials quickly. Trained on quarterly earnings for all S&P500 companies since Q1 2022.</p>
+                <p><strong>Try 5 prompts for free</strong></p>
+                <p><strong>Then, $9.99 per month</strong> for up to 50 prompts & pdf uploads per month</p>
+                
               </div>
             
               <div className="chat-callout d-flex align-items-center justify-content-center">
