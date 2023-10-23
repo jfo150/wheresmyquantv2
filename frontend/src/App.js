@@ -4,9 +4,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SuccessPage from './components/SuccessPage';
 import CancelPage from './components/CancelPage';
+import CheckoutResult from './components/CheckoutResult';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -27,8 +28,8 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
+      <Routes>
+        <Route exact path="/" element={
           <div className="app-container-lg d-flex flex-column vh-100 justify-content-center align-items-center">
 
             <div className="chat-widget bg-light rounded p-4">
@@ -81,11 +82,12 @@ function App() {
               </Modal.Footer>
             </Modal>
           </div>
-          </Route>
-          
+          }/>   
+         
+        <Route path="/checkout-result" component={CheckoutResult} />
         <Route path="/success" component={SuccessPage} />
         <Route path="/cancel" component={CancelPage} />
-      </Switch>
+      </Routes>
     </Router>
   );
 }
