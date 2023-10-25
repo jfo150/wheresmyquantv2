@@ -34,11 +34,11 @@ function App() {
 
             <div className="chat-widget bg-light rounded p-4">
               <div className="title-section text-center mb-4">
-                <h1>Wheres My QUAAANT!!</h1>
+                <h1>Where's My QUANT!!</h1>
                 <p className="subtitle"><em>My quantitative. My math specialist. Look at him.</em></p>
               </div>
               <div className="pricing-section text-center mb-3">
-              <p className="additional-text">This is the quant bot, trained specifically to help decipher company financials quickly. Trained on quarterly earnings for all S&P500 companies since Q1 2022.</p>
+              <p className="additional-text">This is the QuantBot, trained to help decipher company financials quickly. Knowledge base includes quarterly earnings for all S&P500 companies since Q1 2022.</p>
                 <p><strong>Try 5 prompts for free</strong></p>
                 <p><strong>Then, $9.99 per month</strong> for up to 50 prompts & pdf uploads per month</p>
                 
@@ -49,7 +49,7 @@ function App() {
                 <i className="bi bi-arrow-down-right"></i>
               </div>
 
-              <div className="container mt-5">
+              <div className="container mt-2">
                 <div className="d-flex justify-content-center align-items-center mt-4">
                   <Button className="btn btn-primary" onClick={handleShow}>
                     Upgrade to Premium
