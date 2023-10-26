@@ -35,7 +35,7 @@ body, h1, h2, h3, h4, h5, h6, p {
 }
 
 .chat-callout p {
-  font-size: 2.6vw;
+  font-size: 2vw;
   font-weight: bold;
   font-style: italic;
   color: #800080;
@@ -44,7 +44,7 @@ body, h1, h2, h3, h4, h5, h6, p {
 
 .chat-callout .bi-arrow-down-right {
   display: block;
-  font-size: 100px;
+  font-size: 6vw;
   color:#800080;
   margin-top: 150px;
 }

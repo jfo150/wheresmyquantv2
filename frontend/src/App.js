@@ -75,9 +75,7 @@ function App() {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary">
-                  Upgrade Now
-                </Button>
+                
               </Modal.Footer>
             </Modal>
           </div>
