@@ -39,13 +39,13 @@ function App() {
               </div>
               <div className="pricing-section text-center mb-3">
               <p className="additional-text">This is the QuantBot, trained to help decipher company financials quickly. Knowledge base includes quarterly earnings for all S&P500 companies since Q1 2022.</p>
-                <p><strong>Try 5 prompts for free</strong></p>
-                <p><strong>Then, $9.99 per month</strong> for up to 50 prompts & pdf uploads per month</p>
+                <p><strong>Try 5 prompts for free on the lite version</strong></p>
+                <p><strong>Then, $9.99 per month</strong> for unlimited prompts & pdf uploads per month</p>
                 
               </div>
             
               <div className="chat-callout d-flex align-items-center justify-content-center">
-                <p className="mr-2">Try for free!</p>
+                <p className="mr-2">Try lite version for free!</p>
                 <i className="bi bi-arrow-down-right"></i>
               </div>
 
