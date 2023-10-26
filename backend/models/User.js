@@ -11,7 +11,15 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  premium: {
+    type: Boolean,
+    default: false
+  },
+  stripeCustomerId: {
+    type: String,
+    default: null
+}
 });
 
 const User = mongoose.model('User', userSchema);

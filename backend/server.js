@@ -6,8 +6,11 @@ const sessionMiddleware = require('./middleware/session');
 const passportConfig = require('./config/passport-config');
 require('dotenv').config();
 const path = require('path');
-
 const app = express();
+const User = require('./models/User');
+
+
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, { 
@@ -33,6 +36,40 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/payments', require('./routes/payments'));
+
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+});
+  const sig = request.headers['stripe-signature'];
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+  } catch (err) {
+    response.status(400).send(`Webhook Error: ${err.message}`);
+    return;
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const customerEmail = session.customer.email;
+
+    // Find the user by their email
+    User.findOneAndUpdate({ email: customerEmail }, { premium: true, stripeCustomerId: session.customer.id }, { new: true }, (err, updatedUser) => {
+        if (err) {
+            console.error("Error updating user after payment:", err);
+            return;
+        }
+        if(!updatedUser) {
+            console.error("No user found with email:", customerEmail);
+            return;
+        }
+        console.log("User upgraded to premium:", updatedUser);
+    });
+}
+
+
 
 // serve frontend
 app.use(express.static(path.join(__dirname, '../frontend/build'))); 

@@ -82,5 +82,19 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
 });
 
+router.get('/is-premium', (req, res) => {
+    if (!req.user) {
+        return res.status(401).send({ premium: false });
+    }
+
+    User.findById(req.user._id, (err, user) => {
+        if (err) {
+            return res.status(500).send({ error: 'Internal server error' });
+        }
+
+        return res.send({ premium: user.premium });  
+    });
+});
+
 module.exports = router;
 
