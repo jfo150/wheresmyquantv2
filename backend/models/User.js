@@ -12,6 +12,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   }
+  isPremium: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const User = mongoose.model('User', userSchema);

@@ -14,12 +14,12 @@ router.post('/create-checkout-session', async (req, res) => {
           product_data: {
             name: 'Premium Plan',
           },
-          unit_amount: 990,
+          unit_amount: 690,
         },
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}/success`,
+      success_url: `${YOUR_DOMAIN}/checkout-result?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${YOUR_DOMAIN}/cancel`,
     });
 
@@ -39,6 +39,24 @@ router.get('/session-status', async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: 'Failed to retrieve session' });
   }
+});
+
+router.post('/webhook', express.json({type: 'application/json'}), async (req, res) => {
+  const event = req.body;
+
+  switch (event.type) {
+    case 'checkout.session.completed':
+      const session = event.data.object;
+      const customerEmail = session.customer_details && session.customer_details.email;
+      if (customerEmail) {
+        await User.updateOne({ email: customerEmail }, { isPremium: true });
+      }
+      break;
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  res.json({received: true});
 });
 
 module.exports = router;
